@@ -470,6 +470,20 @@ api_key_env = "EXAMPLE_API_KEY"
 models = ["my-model"]
 ```
 
+For example, [IO Intelligence](https://io.net) by io.net serves an OpenAI-compatible Chat Completions API:
+
+```toml
+[models.providers.openai]
+base_url = "https://api.intelligence.io.solutions/api/v1"
+api_key_env = "IONET_API_KEY"
+models = ["meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-R1-0528"]
+
+[models.providers.openai.params]
+use_responses_api = false
+```
+
+Model ids are `org/name` pairs from the [IO Intelligence model list](https://api.intelligence.io.solutions/api/v1/models).
+
 <Note>
     Any features added on top of the official spec by the provider will not be captured. If the provider offers a dedicated LangChain integration package, prefer that instead.
 </Note>
