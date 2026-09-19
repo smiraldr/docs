@@ -470,6 +470,19 @@ api_key_env = "EXAMPLE_API_KEY"
 models = ["my-model"]
 ```
 
+<Note>
+    Any features added on top of the official spec by the provider will not be captured. If the provider offers a dedicated LangChain integration package, prefer that instead.
+</Note>
+
+<Warning>
+    The OpenAI provider defaults to the [Responses API](https://platform.openai.com/docs/api-reference/responses), which most OpenAI-compatible gateways do not implement. If your provider only supports the Chat Completions API, invocation will likely fail. Disable the Responses API explicitly:
+
+    ```toml
+    [models.providers.openai.params]
+    use_responses_api = false
+    ```
+</Warning>
+
 For example, [IO Intelligence](https://io.net) by io.net serves an OpenAI-compatible Chat Completions API:
 
 ```toml
@@ -483,19 +496,6 @@ use_responses_api = false
 ```
 
 Model IDs are `org/name` pairs from the [IO Intelligence model list](https://api.intelligence.io.solutions/api/v1/models).
-
-<Note>
-    Any features added on top of the official spec by the provider will not be captured. If the provider offers a dedicated LangChain integration package, prefer that instead.
-</Note>
-
-<Warning>
-    The OpenAI provider defaults to the [Responses API](https://platform.openai.com/docs/api-reference/responses), which most OpenAI-compatible gateways do not implement. If your provider only supports the Chat Completions API, invocation will likely fail. Disable the Responses API explicitly:
-
-    ```toml
-    [models.providers.openai.params]
-    use_responses_api = false
-    ```
-</Warning>
 
 ## Arbitrary providers
 
